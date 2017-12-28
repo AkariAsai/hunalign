@@ -43,9 +43,9 @@ void buildDumbDictionary( const DictionaryItems& dictionary, DumbDictionary& dum
   }
 }
 
-void buildDumbDictionaryUsingFrequencies( 
-       const DictionaryItems& dictionary, 
-       FrequencyMap& enFreq, 
+void buildDumbDictionaryUsingFrequencies(
+       const DictionaryItems& dictionary,
+       FrequencyMap& enFreq,
        DumbDictionary& dumbDictionary )
 {
   dumbDictionary.clear();
@@ -240,14 +240,14 @@ void trivialTranslateSentenceList(
   {
     std::ofstream translateLogs( "translate.txt" );
   }
-  
+
   translatedSentenceList.clear();
 
   for ( int i=0; i<sentenceList.size(); ++i )
   {
     Sentence translatedSentence;
 
-    trivialTranslate( dumbDictionary, 
+    trivialTranslate( dumbDictionary,
                       sentenceList[i],
                       translatedSentence
                      );
@@ -361,6 +361,20 @@ void normalizeTextsForIdentity( const DictionaryItems& dictionary,
   buildDumbDictionaryUsingFrequencies( dictionary, enFreq, dumbDictionary );
 
   std::cerr << "Simplified dictionary ready." << std::endl;
+
+  // This is for debugging check if the dictionary actually works.
+  int i;
+  for ( i=0; i<dumbDictionary.size(); ++i )
+  {
+    const Phrase& en = dumbDictionary[i].first;
+    const Phrase& hu = dumbDictionary[i].second;
+
+    if (hu.size()==1)
+    {
+      std::cerr << hu[0] << "\t" << en << std::endl;
+    }
+  }
+
 
   SentenceList huSentenceList;
 

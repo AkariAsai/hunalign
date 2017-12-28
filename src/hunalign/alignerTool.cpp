@@ -245,8 +245,8 @@ double alignerToolWithObjects( const DictionaryItems& dictionary,
   int huBookSize = huSentenceListPretty.size();
   int enBookSize = enSentenceList.size();
 
-  std::cerr << "The bool size of japanese corpora is ." << huBookSize << std::endl;
-  std::cerr << "The bool size of english corpora is ." << enBookSize << std::endl;
+  std::cerr << "The book size of japanese corpora is ." << huBookSize << std::endl;
+  std::cerr << "The book size of english corpora is ." << enBookSize << std::endl;
 
   SentenceValues huLength,enLength;
   setSentenceValues( huSentenceListPretty, huLength, alignParameters.utfCharCountingMode ); // Here we use the most originalest Hungarian text.
