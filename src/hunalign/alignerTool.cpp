@@ -303,11 +303,6 @@ double alignerToolWithObjects( const DictionaryItems& dictionary,
 
   std::cerr << "Rough translation-based similarity matrix ready." << std::endl;
 
-//x   std::cout << std::endl;
-//x   dumpAlignMatrix( similarityMatrix, false/*graphical*/ );
-//x   std::cout << std::endl;
-//x   exit(-1);
-
   Trail bestTrail;
   AlignMatrix dynMatrix( huBookSize+1, enBookSize+1, thickness, 1e30 );
 
@@ -382,12 +377,6 @@ double alignerToolWithObjects( const DictionaryItems& dictionary,
           DictionaryItems reDictionary(dictionary);
 
           {
-//            if (!quasiglobal_stopwordRemoval)
-//            {
-//              std::cerr << "filterDictionaryForRealign is a bad idea without stopwordRemoval." << std::endl;
-//              std::cerr << "Stopword dictionary items would also be filtered." << std::endl;
-//              throw "internal error";
-//            }
             filterDictionaryForRealign( huBisentences, enBisentences,
                               reDictionary );
 
@@ -417,6 +406,7 @@ double alignerToolWithObjects( const DictionaryItems& dictionary,
                                      huSentenceListGarbled, enSentenceListGarbled );
 
           sentenceListsToAlignMatrixIdentity( huSentenceListGarbled, enSentenceListGarbled, similarityMatrixDetailed );
+
         }
       }
 

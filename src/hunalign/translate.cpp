@@ -257,22 +257,22 @@ void trivialTranslateSentenceList(
 
     translatedSentenceList.push_back(translatedSentence);
 
-    //TODO: Remove these.
-    Phrase original = sentenceList[i].words;
-    Phrase translated = translatedSentence.words;
-
-    std::cerr << "The original sentence : "  << std::endl;
-    for (int k=0; k<original.size(); ++k )
-    {
-      std::cerr << original[k] << " ";
-    }
-    std::cerr << "\n";
-
-    std::cerr << "The translated sentence : "  << std::endl;
-    for (int k=0; k<translated.size(); ++k )
-    {
-      std::cerr << translated[k] << " ";
-    }
+    // //TODO: Remove these.
+    // Phrase original = sentenceList[i].words;
+    // Phrase translated = translatedSentence.words;
+    //
+    // std::cerr << "The original sentence : "  << std::endl;
+    // for (int k=0; k<original.size(); ++k )
+    // {
+    //   std::cerr << original[k] << " ";
+    // }
+    // std::cerr << "\n";
+    //
+    // std::cerr << "The translated sentence : "  << std::endl;
+    // for (int k=0; k<translated.size(); ++k )
+    // {
+    //   std::cerr << translated[k] << " ";
+    // }
   }
 }
 
@@ -362,21 +362,21 @@ void sortNormalizeSentences( Hunglish::SentenceList& sentenceList )
     for ( int pos=0; pos<sentenceList.size(); ++pos )
     {
       Hunglish::Phrase& sentence = sentenceList[pos].words;
-      //TODO: REMOVE THIS
-      for (int k=0; k<sentence.size(); ++k )
-      {
-        std::cerr << sentence[k] << " ";
-      }
-      std::cerr << "\n";
+      // //TODO: REMOVE THIS
+      // for (int k=0; k<sentence.size(); ++k )
+      // {
+      //   std::cerr << sentence[k] << " ";
+      // }
+      // std::cerr << "\n";
 
       std::sort(sentence.begin(),sentence.end());
 
-      //TODO: REMOVE THIS
-      for (int k=0; k<sentence.size(); ++k )
-      {
-        std::cerr << sentence[k] << " ";
-      }
-      std::cerr << "\n";
+      // //TODO: REMOVE THIS
+      // for (int k=0; k<sentence.size(); ++k )
+      // {
+      //   std::cerr << sentence[k] << " ";
+      // }
+      // std::cerr << "\n";
     }
   }
 }
