@@ -63,8 +63,8 @@ bool isNumber( const std::string& s )
 // (!!!) We assert that sx and sy are ordered sets of Word-s!
 int specializedIntersectionSize( const WordList& sx, const WordList& sy )
 {
+  std::cerr << "specializedIntersectionSize has been just called."  << std::endl;
 
-  if (quasiglobal_spaceOutBySentenceLength)
   int inter=0;
   WordList::const_iterator sxt = sx.begin();
   WordList::const_iterator syt = sy.begin();
