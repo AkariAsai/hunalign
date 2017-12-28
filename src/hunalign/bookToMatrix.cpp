@@ -161,14 +161,14 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en )
   if ( ! exceptionalScoring( hu, en, score ) )
   {
     // Show the input sentence.
-    std::cerr << "The original sentence is " << std:endl;
+    std::cerr << "The original sentence is " << std::endl;
     for (int k=0; k<hu.size(); ++k )
     {
       std::cerr << hu[k] << " ";
     }
     std::cerr << std::endl;
 
-    std::cerr << "The target english sentece is " << std:endl;
+    std::cerr << "The target english sentece is " << std::endl;
     for (int k=0; k<en.size(); ++k )
     {
       std::cerr << en[k] << " ";
