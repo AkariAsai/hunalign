@@ -90,8 +90,8 @@ void buildDumbDictionaryUsingFrequencies(
 
       if (overWrite)
         dumbDictionary[originalWord] = en ;
-        //TODO: Remove this
-        std::cerr << originalWord << "\t" << en[0] << std::endl;
+        // //TODO: Remove this
+        // std::cerr << originalWord << "\t" << en[0] << std::endl;
     }
   }
 }
@@ -256,6 +256,11 @@ void trivialTranslateSentenceList(
                      );
 
     translatedSentenceList.push_back(translatedSentence);
+
+    //TODO: Remove these.
+    std::cerr << "The original sentence : " << sentenceList[i] << std::endl;
+    std::cerr << "The translated sentence : " << translatedSentence << std::endl;
+
   }
 }
 
