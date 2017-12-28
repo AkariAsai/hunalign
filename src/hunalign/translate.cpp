@@ -362,7 +362,21 @@ void sortNormalizeSentences( Hunglish::SentenceList& sentenceList )
     for ( int pos=0; pos<sentenceList.size(); ++pos )
     {
       Hunglish::Phrase& sentence = sentenceList[pos].words;
+      //TODO: REMOVE THIS
+      for (int k=0; k<sentence.size(); ++k )
+      {
+        std::cerr << sentence[k] << " ";
+      }
+      std::cerr << "\n";
+
       std::sort(sentence.begin(),sentence.end());
+
+      //TODO: REMOVE THIS
+      for (int k=0; k<sentence.size(); ++k )
+      {
+        std::cerr << sentence[k] << " ";
+      }
+      std::cerr << "\n";
     }
   }
 }
