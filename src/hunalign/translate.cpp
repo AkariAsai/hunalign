@@ -258,9 +258,20 @@ void trivialTranslateSentenceList(
     translatedSentenceList.push_back(translatedSentence);
 
     //TODO: Remove these.
-    std::cerr << "The original sentence : " << sentenceList[i] << std::endl;
-    std::cerr << "The translated sentence : " << translatedSentence << std::endl;
+    Phrase original = sentenceList[i].words;
+    Phrase translated = translatedSentence.words;
 
+    std::cerr << "The original sentence : "  << std::endl;
+    for (int k=0; k<original.size(); ++k )
+    {
+      std::cerr << original[k] << " " << std::endl;
+    }
+
+    std::cerr << "The translated sentence : "  << std::endl;
+    for (int k=0; k<translated.size(); ++k )
+    {
+      std::cerr << translated[k] << " " << std::endl;
+    }
   }
 }
 
