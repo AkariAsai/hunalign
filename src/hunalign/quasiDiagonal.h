@@ -151,7 +151,7 @@ public:
   {
     return rows[y];
   }
-  
+
   T& cell( int y, int x )
   {
     if ((y<0)||(y>=height))

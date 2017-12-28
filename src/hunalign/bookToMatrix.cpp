@@ -121,7 +121,7 @@ bool isParagraph( const Phrase& phrase )
 // Lenyegeben arra jo, hogy paragrafus csak paragrafussal legyen match-elve.
 // Amiknek nem jut par kozuluk, azok gyakorlatilag mindenkeppen skippelve lesznek, mert
 // scoreOfParagraphMisMatch << -skipPenalty.
-// 
+//
 // Az, hogy a scoreOfParagraphMatch nagy, csak olyankor tud gondot okozni, amikor a
 // magyar paragrafushatarolok halmaza(nak kepe) sem nem tartalmazza, sem nem tartalmazottja
 // az angol paragrafushatarolok halmazanak. Peldaul
@@ -153,6 +153,8 @@ const double maximumScore = 3.0;
 
 double scoreByIdentity( const Phrase& hu, const Phrase& en )
 {
+  std::cerr << "bookToMatrix.cpp scoreByIdentity has been just called." << std::endl;
+
   double score = 0;
   if ( ! exceptionalScoring( hu, en, score ) )
   {
@@ -164,8 +166,8 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en )
     // What is fact? If we divide with min, we give higher scores to valid 2-to-1 segments.
     // But we make silly mistakes because we give higher scores to some invalid 1-to-1 segments like this:
     // Kocogtam. -Like I said, I was out jogging-- -ObviousIy, you weren't jogging.
-    // Emlékszel? Remember the day that they threw you out?
-    // 
+    // Emlï¿½kszel? Remember the day that they threw you out?
+    //
     // Hopefully Gale-Church scoring compensates for this. Sometimes does not compensate enough.
     score /= ( (hu.size()<en.size() ? hu.size() : en.size() ) + 1 ) ;
     score *= maximumScore ;
@@ -174,29 +176,11 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en )
   return score;
 }
 
-// Itt egy ujabb valtozat, de egyelore rosszabb szamokat ad, talan mert rosszabbul kezeli az osszeolvadast.
-//x 
-//x // Ezt akkor csereltem ki 3.0-rol 5.0-re, amikor a minimumot maximumra csreltem alabb.
-//x const double maximumScore = 5.0;
-//x 
-//x double scoreByIdentity( const Phrase& hu, const Phrase& en )
-//x {
-//x   double score = 0;
-//x   if ( ! exceptionalScoring( hu, en, score ) )
-//x   {
-//x     score = specializedIntersectionSize( hu, en );
-//x 
-//x     // Itt honapokig minimum volt maximum helyett. A maximum kicsit rontja a jo minusegu handalignolt 
-//x     // szovegeken elert pontossagot, A fene tudja. Vacakokon ez biztosan jobb.
-//x     score /= ( (hu.size()>en.size() ? hu.size() : en.size() ) + 1 ) ;
-//x     score *= maximumScore ;
-//x   }
-//x 
-//x   return score;
-//x }
-
 void sentenceListsToAlignMatrixIdentity( const SentenceList& huSentenceList, const SentenceList& enSentenceList, AlignMatrix& alignMatrix )
 {
+  // This is for debugging.
+  // TODO: Remove the logging statement.
+  std::cerr << "bookToMatrix.cpp sentenceListsToAlignMatrixIdentity has been just called." << std::endl;
   int huPos,enPos;
 
   int huBookSize = huSentenceList.size();
@@ -228,16 +212,21 @@ void sentenceListsToAlignMatrixIdentity( const SentenceList& huSentenceList, con
 
 double scoreByTranslation( const Phrase& hu, const Phrase& en, const TransLex& transLex )
 {
+  // This is for debugging.
+  std::cerr << "bookToMatrix.cpp scoreByTranslation has been just called." << std::endl;
   double score = 0;
   if ( ! exceptionalScoring( hu, en, score ) )
   {
     for ( int huPos=0; huPos<hu.size(); ++huPos )
     {
       const Word& huWord = hu[huPos];
-      // TODO Ezt lookupLeftWord es intersection_size kombinaciojaval kell:
+      // TODO: REMOVE THIS.
+      std::cerr << "huwords : " <<  huWord << std::endl;
       for ( int enPos=0; enPos<en.size(); ++enPos )
       {
+        // TODO: REMOVE THIS.
         const Word& enWord = en[enPos];
+        std::cerr << "enwords : " <<  enWord << std::endl;
         if ( (huWord==enWord) && (huWord!="is") && (huWord!="a") )
         {
           ++score;
@@ -254,14 +243,14 @@ double scoreByTranslation( const Phrase& hu, const Phrase& en, const TransLex& t
 }
 
 // This is much-much slower, but instead of identity, uses a many-to-many dictionary.
-// For performance reasons, by convention does not calculate the similarity if the 
+// For performance reasons, by convention does not calculate the similarity if the
 // alignMatrix element contains outsideOfRadiusValue, a big negative number.
 void sentenceListsToAlignMatrixTranslation(
                                            const SentenceList& huSentenceList, const SentenceList& enSentenceList,
                                            const TransLex& transLex,
                                            AlignMatrix& alignMatrix )
 {
-
+  std::cerr << "bookToMatrix.cpp sentenceListsToAlignMatrixTranslation has been just called." << std::endl;
   int huPos,enPos;
 
   int huBookSize = huSentenceList.size();
@@ -285,6 +274,7 @@ void sentenceListsToAlignMatrixTranslation(
       const Phrase& hu = huSentenceList[huPos].words;
       const Phrase& en = enSentenceList[enPos].words;
 
+      // Set the cell value to translation based score.
       alignMatrix.setCell( huPos, enPos, scoreByTranslation( hu, en, transLex ) );
     }
 
@@ -302,6 +292,7 @@ void sentenceListsToAlignMatrixTranslation(
 
 double scoreByModelOne( const Phrase& hu, const Phrase& en, const IBMModelOne& modelOne )
 {
+  std::cerr << "bookToMatrix.cpp scoreByModelOne has been just called." << std::endl;
   double score = 0;
   if ( ! exceptionalScoring( hu, en, score ) )
   {
@@ -359,7 +350,7 @@ int characterLength( const Word& word, bool utfCharCountingMode )
     for ( int i=0; i<word.size(); ++i )
     {
       // A code is the start of an utf-8 byte-sequence describing a character
-      // iff it is not in the [128,192) range. 
+      // iff it is not in the [128,192) range.
       if (((unsigned char)word[i]<(unsigned char)128)||((unsigned char)word[i]>=(unsigned char)192))
       {
         ++length;
