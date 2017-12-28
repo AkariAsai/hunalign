@@ -91,7 +91,7 @@ void buildDumbDictionaryUsingFrequencies(
       if (overWrite)
         dumbDictionary[originalWord] = en ;
         //TODO: Remove this
-        std::cerr << originalWord << "\t" << en << std::endl;
+        std::cerr << originalWord << "\t" << en[0] << std::endl;
     }
   }
 }
