@@ -30,6 +30,7 @@ void buildDumbDictionary( const DictionaryItems& dictionary, DumbDictionary& dum
   dumbDictionary.clear();
 
   int i;
+  std::cerr << "The dictionary length is : " << dictionary.size() <<std::endl;
   for ( i=0; i<dictionary.size(); ++i )
   {
     const Phrase& en = dictionary[i].first;
@@ -39,7 +40,7 @@ void buildDumbDictionary( const DictionaryItems& dictionary, DumbDictionary& dum
     {
       dumbDictionary[ hu[0] ] = en ;
       //TODO: Remove this
-      std::cerr << hu[0] << "\t" << en << std::endl;
+      std::cerr << hu[0] << "\t" << en[0] << std::endl;
     }
   }
 }
