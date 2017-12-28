@@ -38,7 +38,8 @@ void buildDumbDictionary( const DictionaryItems& dictionary, DumbDictionary& dum
     if (hu.size()==1)
     {
       dumbDictionary[ hu[0] ] = en ;
-      // std::cerr << hu[0] << "\t" << en << std::endl;
+      //TODO: Remove this
+      std::cerr << hu[0] << "\t" << en << std::endl;
     }
   }
 }
@@ -361,20 +362,6 @@ void normalizeTextsForIdentity( const DictionaryItems& dictionary,
   buildDumbDictionaryUsingFrequencies( dictionary, enFreq, dumbDictionary );
 
   std::cerr << "Simplified dictionary ready." << std::endl;
-
-  // This is for debugging check if the dictionary actually works.
-  int i;
-  for ( i=0; i<dumbDictionary.size(); ++i )
-  {
-    const Phrase& en = dumbDictionary[i].first;
-    const Phrase& hu = dumbDictionary[i].second;
-
-    if (hu.size()==1)
-    {
-      std::cerr << hu[0] << "\t" << en << std::endl;
-    }
-  }
-
 
   SentenceList huSentenceList;
 
