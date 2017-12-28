@@ -30,7 +30,6 @@ void buildDumbDictionary( const DictionaryItems& dictionary, DumbDictionary& dum
   dumbDictionary.clear();
 
   int i;
-  std::cerr << "The dictionary length is : " << dictionary.size() <<std::endl;
   for ( i=0; i<dictionary.size(); ++i )
   {
     const Phrase& en = dictionary[i].first;
@@ -39,8 +38,8 @@ void buildDumbDictionary( const DictionaryItems& dictionary, DumbDictionary& dum
     if (hu.size()==1)
     {
       dumbDictionary[ hu[0] ] = en ;
-      //TODO: Remove this
-      std::cerr << hu[0] << "\t" << en[0] << std::endl;
+      // //TODO: Remove this
+      // std::cerr << hu[0] << "\t" << en[0] << std::endl;
     }
   }
 }
@@ -51,7 +50,7 @@ void buildDumbDictionaryUsingFrequencies(
        DumbDictionary& dumbDictionary )
 {
   dumbDictionary.clear();
-
+  std::cerr << "The dictionary length is : " << dictionary.size() <<std::endl;
   int i;
   for ( i=0; i<dictionary.size(); ++i )
   {
@@ -91,6 +90,8 @@ void buildDumbDictionaryUsingFrequencies(
 
       if (overWrite)
         dumbDictionary[originalWord] = en ;
+        //TODO: Remove this
+        std::cerr << dumbDictionary[originalWord] << "\t" << en << std::endl;
     }
   }
 }
