@@ -264,13 +264,14 @@ void trivialTranslateSentenceList(
     std::cerr << "The original sentence : "  << std::endl;
     for (int k=0; k<original.size(); ++k )
     {
-      std::cerr << original[k] << " " << std::endl;
+      std::cerr << original[k] << " ";
     }
+    std::cerr << "\n";
 
     std::cerr << "The translated sentence : "  << std::endl;
     for (int k=0; k<translated.size(); ++k )
     {
-      std::cerr << translated[k] << " " << std::endl;
+      std::cerr << translated[k] << " ";
     }
   }
 }
