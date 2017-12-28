@@ -1,4 +1,17 @@
-## The hunalign sentence aligner
+## This is a fork of  The hunalign sentence aligner.
+To create a huge Japanese-English bilingual corpose from wikipedia, I'm modifying this Hunalign,
+since different from other potential web sources, a lot of wikipedia corpos in Japanese were just translated from English Wikipedia corpos, and the sentences correspond the original English in original order. 
+
+The difference from the original Hunalign: 
+- Use "Sentence-order score", in addition to "token-based similarity score" and "sentence-length" score
+to make sure the closer sentence in terms of order in source/target sentence should have higher score.
+- Add higher scores to "previous sentences" than "following sentences", since in general, Japanese article is shorter than English one, and the it is less likely that if we have try to align t-th japanese sentece to t-nth English sentence(n > 5 or more)
+
+
+-----------------------------
+
+
+# The hunalign sentence aligner
 
 ### Introduction
 
