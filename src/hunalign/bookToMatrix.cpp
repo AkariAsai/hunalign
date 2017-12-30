@@ -160,21 +160,6 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en )
   double score = 0;
   if ( ! exceptionalScoring( hu, en, score ) )
   {
-    // Show the input sentence.
-    std::cerr << "The original sentence is " << std::endl;
-    for (int k=0; k<hu.size(); ++k )
-    {
-      std::cerr << hu[k] << " ";
-    }
-    std::cerr << std::endl;
-
-    std::cerr << "The target english sentece is " << std::endl;
-    for (int k=0; k<en.size(); ++k )
-    {
-      std::cerr << en[k] << " ";
-    }
-    std::cerr << std::endl;
-
     score = specializedIntersectionSize( hu, en );
 
     // If we divide with max here, we are better at avoiding global mistakes.
@@ -200,21 +185,6 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTransl
   double score = 0;
   if ( ! exceptionalScoring( hu, en, score ) )
   {
-    // Show the input sentence.
-    std::cerr << "The original sentence is " << std::endl;
-    for (int k=0; k<hu.size(); ++k )
-    {
-      std::cerr << hu[k] << " ";
-    }
-    std::cerr << std::endl;
-
-    std::cerr << "The target english sentece is " << std::endl;
-    for (int k=0; k<en.size(); ++k )
-    {
-      std::cerr << en[k] << " ";
-    }
-    std::cerr << std::endl;
-
     score = specializedIntersectionSize( hu, en );
 
     // Check if the target sentence include the translated words from the source.
@@ -226,6 +196,7 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTransl
         {
           // TODO: REMOVE THIS.
           const Word& enWord = en[enPos];
+          // TODO: Use better hueristics to adopt the score better.
           if (huWord==enWord && (huWord!="in") && (huWord!="of") && (huWord!="and") )
           {
             // TODO: REMOVE THIS.
@@ -237,7 +208,6 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTransl
       }
     }
     // End of the translattion checking.
-
     score /= ( (hu.size()<en.size() ? hu.size() : en.size() ) + 1 ) ;
     score *= maximumScore ;
   }
@@ -247,9 +217,6 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTransl
 
 void sentenceListsToAlignMatrixIdentity( const SentenceList& huSentenceList, const SentenceList& enSentenceList, AlignMatrix& alignMatrix )
 {
-  // This is for debugging.
-  // TODO: Remove the logging statement.
-  std::cerr << "bookToMatrix.cpp sentenceListsToAlignMatrixIdentity has been just called." << std::endl;
   int huPos,enPos;
 
   int huBookSize = huSentenceList.size();
@@ -282,21 +249,15 @@ void sentenceListsToAlignMatrixIdentity( const SentenceList& huSentenceList, con
 
 double scoreByTranslation( const Phrase& hu, const Phrase& en, const TransLex& transLex )
 {
-  // This is for debugging.
-  std::cerr << "bookToMatrix.cpp scoreByTranslation has been just called." << std::endl;
   double score = 0;
   if ( ! exceptionalScoring( hu, en, score ) )
   {
     for ( int huPos=0; huPos<hu.size(); ++huPos )
     {
       const Word& huWord = hu[huPos];
-      // TODO: REMOVE THIS.
-      std::cerr << "huwords : " <<  huWord << std::endl;
       for ( int enPos=0; enPos<en.size(); ++enPos )
       {
-        // TODO: REMOVE THIS.
         const Word& enWord = en[enPos];
-        std::cerr << "enwords : " <<  enWord << std::endl;
         if ( (huWord==enWord) && (huWord!="is") && (huWord!="a") )
         {
           ++score;
@@ -320,7 +281,6 @@ void sentenceListsToAlignMatrixTranslation(
                                            const TransLex& transLex,
                                            AlignMatrix& alignMatrix )
 {
-  std::cerr << "bookToMatrix.cpp sentenceListsToAlignMatrixTranslation has been just called." << std::endl;
   int huPos,enPos;
 
   int huBookSize = huSentenceList.size();
