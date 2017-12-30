@@ -193,6 +193,58 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en )
   return score;
 }
 
+double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTranslation)
+{
+  std::cerr << "bookToMatrix.cpp scoreByIdentityWithTranslation has been just called." << std::endl;
+
+  double score = 0;
+  if ( ! exceptionalScoring( hu, en, score ) )
+  {
+    // Show the input sentence.
+    std::cerr << "The original sentence is " << std::endl;
+    for (int k=0; k<hu.size(); ++k )
+    {
+      std::cerr << hu[k] << " ";
+    }
+    std::cerr << std::endl;
+
+    std::cerr << "The target english sentece is " << std::endl;
+    for (int k=0; k<en.size(); ++k )
+    {
+      std::cerr << en[k] << " ";
+    }
+    std::cerr << std::endl;
+
+    score = specializedIntersectionSize( hu, en );
+
+    // Check if the target sentence include the translated words from the source.
+    if (useTranslation==true){
+      for ( int huPos=0; huPos<hu.size(); ++huPos )
+      {
+        const Word& huWord = hu[huPos];
+        for ( int enPos=0; enPos<en.size(); ++enPos )
+        {
+          // TODO: REMOVE THIS.
+          const Word& enWord = en[enPos];
+          if (huWord==enWord)
+          {
+            // TODO: REMOVE THIS.
+            std::cerr << "huwords : " <<  huWord << std::endl;
+            std::cerr << "enwords : " <<  enWord << std::endl;
+            ++score;
+          }
+        }
+      }
+    }
+    // End of the translattion checking.
+
+    score /= ( (hu.size()<en.size() ? hu.size() : en.size() ) + 1 ) ;
+    score *= maximumScore ;
+  }
+
+  return score;
+}
+
 void sentenceListsToAlignMatrixIdentity( const SentenceList& huSentenceList, const SentenceList& enSentenceList, AlignMatrix& alignMatrix )
 {
   // This is for debugging.
@@ -212,7 +264,8 @@ void sentenceListsToAlignMatrixIdentity( const SentenceList& huSentenceList, con
       const Phrase& hu = huSentenceList[huPos].words;
       const Phrase& en = enSentenceList[enPos].words;
 
-      alignMatrix.setCell( huPos, enPos, scoreByIdentity(hu,en) );
+      // alignMatrix.setCell( huPos, enPos, scoreByIdentity(hu,en) );
+      alignMatrix.setCell( huPos, enPos, scoreByIdentity(hu,en, true) );
     }
 
     bool rarelyLogging = true;
