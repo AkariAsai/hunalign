@@ -226,7 +226,7 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTransl
         {
           // TODO: REMOVE THIS.
           const Word& enWord = en[enPos];
-          if (huWord==enWord)
+          if (huWord==enWord && (huWord!="in") && (huWord!="of") && (huWord!="and") )
           {
             // TODO: REMOVE THIS.
             std::cerr << "huwords : " <<  huWord << std::endl;
