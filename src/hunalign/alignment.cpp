@@ -66,6 +66,8 @@ const unsigned char HuHuEnSkip = 4;
 const unsigned char HuEnEnSkip = 5;
 const unsigned char Dead = 6;
 
+
+// TODO : Fix this function not to choose the PREVIOUS sentence.
 void buildDynProgMatrix( const AlignMatrix& w, const SentenceValues& huLength, const SentenceValues& enLength,
                          QuasiDiagonal<double>& v, TrelliMatrix& trellis )
 {
@@ -76,6 +78,7 @@ void buildDynProgMatrix( const AlignMatrix& w, const SentenceValues& huLength, c
 
   // v[huPos][enPos] gives the similarity of the [0,huPos) and [0,enPos) intervals.
   // The smaller value, the better similarity. (Unlike in the original similarity matrix w, where bigger is better.)
+  // The value of v is better when its smaller, and the values in are better when its bigger.
 
   double infinity = 1e6;
 
@@ -121,7 +124,6 @@ void buildDynProgMatrix( const AlignMatrix& w, const SentenceValues& huLength, c
           {
             lengthFitness = 0;
           }
-
           values[Diag] = v[huPos-1][enPos-1] - w[huPos-1][enPos-1] - lengthFitness ;
         }
 
@@ -160,6 +162,10 @@ void buildDynProgMatrix( const AlignMatrix& w, const SentenceValues& huLength, c
           const double& b = w[huPos-1][enPos-2] ;
           values[HuEnEnSkip] = v[huPos-1][enPos-2] - ( a<b ? a : b ) - skipScore - lengthFitness ; // The worse of the two crossed square.
         }
+
+        // If you dont wanna go back, you should put the change for the best value here.
+        std::cerr << "The values matrix built." << std::endl;
+        std::cerr << values[0] << std::endl;
 
         unsigned char direction = Dead;
         double bestValue = infinity;
@@ -233,6 +239,7 @@ void buildDynProgMatrix( const AlignMatrix& w, const SentenceValues& huLength, c
   }
 }
 
+// Create the best trail here from the TreilMatrix.
 void trelliToLadder( const TrelliMatrix& trellis, Trail& bestTrail )
 {
   bestTrail.clear();
@@ -256,8 +263,6 @@ void trelliToLadder( const TrelliMatrix& trellis, Trail& bestTrail )
   while (true)
   {
     unsigned char trelli = trellis[huPos][enPos];
-
-    // std::cerr << huPos << "," << enPos << "," << (int)trelli << std::endl;
 
     if ((huPos==0) || (enPos==0))
       break;
@@ -343,12 +348,6 @@ void align( const AlignMatrix& w, const SentenceValues& huLength, const Sentence
 
   buildDynProgMatrix( w, huLength, enLength, v, trellis );
 
-//x   std::cout << std::endl;
-//x   dumpAlignMatrix(v);
-//x   std::cout << std::endl;
-//x   dumpTrelliMatrix(trellis);
-//x   exit(-1);
-
   std::cerr << "Matrix built." << std::endl;
 
   trelliToLadder( trellis, bestTrail );
@@ -400,7 +399,7 @@ double scoreTrailOrBisentenceList( const Trail& trailAuto, const Trail& trailHan
   std::cerr << trailAuto.size()-score << " misaligned out of " << trailHand.size() << " correct items, "
     << trailAuto.size() << " bets." << std::endl;
 
-  std::cerr << "Precision: " << 1.0*score/trailAuto.size() 
+  std::cerr << "Precision: " << 1.0*score/trailAuto.size()
     << ", Recall: " << 1.0*score/trailHand.size() << std::endl;
 
   double ratio = 1.0*(trailAuto.size()-score)/trailAuto.size();

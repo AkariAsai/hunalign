@@ -63,8 +63,6 @@ bool isNumber( const std::string& s )
 // (!!!) We assert that sx and sy are ordered sets of Word-s!
 int specializedIntersectionSize( const WordList& sx, const WordList& sy )
 {
-  std::cerr << "specializedIntersectionSize has been just called."  << std::endl;
-
   int inter=0;
   WordList::const_iterator sxt = sx.begin();
   WordList::const_iterator syt = sy.begin();
@@ -155,8 +153,6 @@ const double maximumScore = 3.0;
 
 double scoreByIdentity( const Phrase& hu, const Phrase& en )
 {
-  std::cerr << "bookToMatrix.cpp scoreByIdentity has been just called." << std::endl;
-
   double score = 0;
   if ( ! exceptionalScoring( hu, en, score ) )
   {
@@ -180,8 +176,6 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en )
 
 double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTranslation)
 {
-  std::cerr << "bookToMatrix.cpp scoreByIdentityWithTranslation has been just called." << std::endl;
-
   double score = 0;
   if ( ! exceptionalScoring( hu, en, score ) )
   {
@@ -322,7 +316,6 @@ void sentenceListsToAlignMatrixTranslation(
 
 double scoreByModelOne( const Phrase& hu, const Phrase& en, const IBMModelOne& modelOne )
 {
-  std::cerr << "bookToMatrix.cpp scoreByModelOne has been just called." << std::endl;
   double score = 0;
   if ( ! exceptionalScoring( hu, en, score ) )
   {
