@@ -25,7 +25,7 @@ for i in tqdm(range(start_idx, start_idx+10000)):
     # Add the result if the ja sentences could find the corresponding en sentence.
     while line:
         result = line.split('\t')
-        if len(result[0]) > 0:
+        if len(result[0]) > 0 and float(result[2]) > -0.3:
             result_f.write(result[0] +','+ result[1] + ',' + result[2])
         line = f.readline()
     f.close()
