@@ -188,14 +188,13 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTransl
         const Word& huWord = hu[huPos];
         for ( int enPos=0; enPos<en.size(); ++enPos )
         {
-          // TODO: REMOVE THIS.
           const Word& enWord = en[enPos];
           // TODO: Use better hueristics to adopt the score better.
           if (huWord==enWord && (huWord!="in") && (huWord!="of") && (huWord!="and") )
           {
-            // TODO: REMOVE THIS.
-            std::cerr << "huwords : " <<  huWord << std::endl;
-            std::cerr << "enwords : " <<  enWord << std::endl;
+            // // TODO: REMOVE THIS.
+            // std::cerr << "huwords : " <<  huWord << std::endl;
+            // std::cerr << "enwords : " <<  enWord << std::endl;
             ++score;
           }
         }

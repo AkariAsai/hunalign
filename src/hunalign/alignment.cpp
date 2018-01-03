@@ -86,6 +86,9 @@ void buildDynProgMatrix( const AlignMatrix& w, const SentenceValues& huLength, c
   {
     int rowStart = v.rowStart(huPos);
     int rowEnd   = v.rowEnd(huPos);
+
+    std::cerr << "rowEnd" << rowEnd << std::endl;
+
     for ( enPos=rowStart; enPos<rowEnd; ++enPos )
     {
       double& val = v.cell(huPos,enPos);
@@ -106,7 +109,7 @@ void buildDynProgMatrix( const AlignMatrix& w, const SentenceValues& huLength, c
 
         if (huPos>0)
         {
-          values[HuSkip] = v[huPos-1][enPos]   - skipScore;
+          values[HuSkip] = v[huPos-1][enPos] - skipScore;
         }
 
         if (enPos>0)
@@ -162,10 +165,6 @@ void buildDynProgMatrix( const AlignMatrix& w, const SentenceValues& huLength, c
           const double& b = w[huPos-1][enPos-2] ;
           values[HuEnEnSkip] = v[huPos-1][enPos-2] - ( a<b ? a : b ) - skipScore - lengthFitness ; // The worse of the two crossed square.
         }
-
-        // If you dont wanna go back, you should put the change for the best value here.
-        std::cerr << "The values matrix built." << std::endl;
-        std::cerr << values[0] << std::endl;
 
         unsigned char direction = Dead;
         double bestValue = infinity;

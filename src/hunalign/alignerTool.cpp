@@ -133,46 +133,6 @@ double globalScoreOfTrail( const Trail& trail, const AlignMatrix& dynMatrix,
   TrailScoresInterval trailScoresInterval( trail, dynMatrix, huSentenceListGarbled, enSentenceListGarbled );
 
   return trailScoresInterval(0,trail.size()-1);
-
-//x   const double badScore = -1000;
-//x
-//x   double scoreSum(0);
-//x   int itemNum(0);
-//x
-//x   TrailScores trailScores(trail,dynMatrix);
-//x
-//x   if (trail.size()<=2)
-//x     return badScore;
-//x
-//x   for ( int pos=0; pos<trail.size()-1; ++pos )
-//x   {
-//x     int huDiff = trail[pos+1].first  -trail[pos].first  ;
-//x     int enDiff = trail[pos+1].second -trail[pos].second ;
-//x
-//x     if ( (huDiff>2) || (enDiff>2) )
-//x     {
-//x       std::cerr << "trailScores for segment lengths of more than two is currently unimplemented." << std::endl;
-//x       throw "internal error";
-//x     }
-//x
-//x     bool huP = ( (huDiff==1) && isParagraph( huSentenceListGarbled[trail[pos].first ].words ) );
-//x     bool enP = ( (enDiff==1) && isParagraph( enSentenceListGarbled[trail[pos].second].words ) );
-//x
-//x     if ( (!huP) && (!enP) )
-//x     {
-//x       scoreSum += trailScores(pos);
-//x       ++itemNum;
-//x     }
-//x   }
-//x
-//x   if (itemNum==0)
-//x   {
-//x     return badScore;
-//x   }
-//x   else
-//x   {
-//x     return scoreSum/itemNum;
-//x   }
 }
 
 
@@ -240,13 +200,8 @@ double alignerToolWithObjects( const DictionaryItems& dictionary,
                  const AlignParameters& alignParameters,
                  std::ostream& os )
 {
-  // This is for debugging.
-  std::cerr << "lignerToolWithObjects has been just called." << std::endl;
   int huBookSize = huSentenceListPretty.size();
   int enBookSize = enSentenceList.size();
-
-  std::cerr << "The book size of japanese corpora is ." << huBookSize << std::endl;
-  std::cerr << "The book size of english corpora is ." << enBookSize << std::endl;
 
   SentenceValues huLength,enLength;
   setSentenceValues( huSentenceListPretty, huLength, alignParameters.utfCharCountingMode ); // Here we use the most originalest Hungarian text.
@@ -294,18 +249,18 @@ double alignerToolWithObjects( const DictionaryItems& dictionary,
     thickness = maximalThickness;
   }
 
+  // See the AlignMatrix(QuasiDiagonal)'s definition on quasiDiagonal.h'
   AlignMatrix similarityMatrix( huBookSize, enBookSize, thickness, outsideOfRadiusValue );
 
   sentenceListsToAlignMatrixIdentity( huSentenceListGarbled, enSentenceListGarbled, similarityMatrix );
   std::cerr << std::endl;
-
-  // temporaryDumpOfAlignMatrix( std::cerr, similarityMatrix );
 
   std::cerr << "Rough translation-based similarity matrix ready." << std::endl;
 
   Trail bestTrail;
   AlignMatrix dynMatrix( huBookSize+1, enBookSize+1, thickness, 1e30 );
 
+  // Is this building dynMatrix.
   align( similarityMatrix, huLength, enLength, bestTrail, dynMatrix );
   std::cerr << "Align ready." << std::endl;
 

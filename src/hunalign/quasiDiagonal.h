@@ -36,23 +36,6 @@ public:
     QuasiDiagonalRow( int size_=0, int offset_=0, int thickness=0, T outsideDefault_=T() )
       : offset(offset_), size(size_), data(thickness,T()), outsideDefault(outsideDefault_) {}
 
-//x     T operator[](int k) const
-//x     {
-//x       if ( ! ((k>=0) && (k<size)) )
-//x       {
-//x         throw "out of bounds";
-//x       }
-//x       int d = k-offset;
-//x       if ( (d>=0) && (d<(int)data.size()) )
-//x       {
-//x         return data[k-offset];
-//x       }
-//x       else
-//x       {
-//x         return outsideDefault;
-//x       }
-//x     }
-
     enum ZoneType
     {
       DiagZone    = 1,
