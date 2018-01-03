@@ -3,7 +3,7 @@ import subprocess
 from tqdm import tqdm
 
 argvs = sys.argv
-start_idx = argvs[1]
+start_idx = int(argvs[1])
 
 tmp_output_filename = 'align_tmp_' + str(start_idx) + '.txt'
 result_filename = 'align_result_' + str(start_idx) + '.txt'
