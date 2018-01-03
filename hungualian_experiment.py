@@ -16,16 +16,17 @@ for i in tqdm(range(10)):
 
     sys_call = 'src/hunalign/hunalign ' + dic_filename + ' ' + ja_filename + ' ' + \
         en_filename + ' -hand=examples/demo.manual.ladder -text >' + tmp_output_filename
-    print(sys_call)
 
     subprocess.call(sys_call, shell=True)
 
     f = open(tmp_output_filename)
     line = f.readline()
 
+    # Add the result if the ja sentences could find the corresponding en sentence.
     while line:
-        print(line.split('\t'))
-        result_f.write(line)
+        result = line.split('\t')
+        if len(result[0]) > 0:
+            result_f.write(result[0] +','+ result[1] + ',' + result[2])
         line = f.readline()
     f.close()
 
