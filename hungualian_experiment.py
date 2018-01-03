@@ -15,10 +15,15 @@ for i in range(10):
 
     sys_call = 'src/hunalign/hunalign ' + dic_filename + ' ' + ja_filename + ' ' + \
         en_filename + ' -hand=examples/demo.manual.ladder -text >' + tmp_output_filename
+    print(sys_call)
+
     subprocess.call(sys_call, shell=True)
 
-    f = open(output_filename)
+    f = open(tmp_output_filename)
     line = f.readline()
 
     while line:
         result_f.write(line)
+    f.close()
+
+result_f.close()
