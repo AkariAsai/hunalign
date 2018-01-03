@@ -87,8 +87,6 @@ void buildDynProgMatrix( const AlignMatrix& w, const SentenceValues& huLength, c
     int rowStart = v.rowStart(huPos);
     int rowEnd   = v.rowEnd(huPos);
 
-    std::cerr << "rowEnd" << rowEnd << std::endl;
-
     for ( enPos=rowStart; enPos<rowEnd; ++enPos )
     {
       double& val = v.cell(huPos,enPos);
