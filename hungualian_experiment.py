@@ -23,10 +23,10 @@ for i in tqdm(range(10)):
     f = open(tmp_output_filename)
     line = f.readline()
 
-
     while line:
-        print(line)
+        print(line.split('\t'))
         result_f.write(line)
+        line = f.readline()
     f.close()
 
 result_f.close()
