@@ -28,7 +28,7 @@ for i in tqdm(range(start_idx, start_idx+10000)):
     while line:
         result = line.split('\t')
         if len(result[0]) > 0 and float(result[2]) > -0.3:
-            writer.writerow((i,result[0], result[1], float(result[2])))
+            writer.writerow((i+start_idx,result[0], result[1], float(result[2])))
             # result_f.write(str(i) + '\t' + result[0] +'\t'+ result[1] + '\t' + result[2])
         line = f.readline()
     f.close()
