@@ -3,7 +3,7 @@ import csv
 from tqdm import tqdm
 from operator import itemgetter
 
-result_files = ["align_result_0.txt". "align_result_100000.txt", \
+result_files = ["align_result_0.txt", "align_result_100000.txt", \
                 "align_result_200000.txt","align_result_300000.txt",\
                 "align_result_400000.txt"]
 
