@@ -27,6 +27,6 @@ result_f = open("sorted_alignment_result.csv", 'w')
 writer = csv.writer(result_f, quoting=csv.QUOTE_NONNUMERIC)
 
 for key, value in sorted(d.items(), key=itemgetter(1), reverse = True):
-    writer.writerow((pair_dic[key][0], pair_dic[key][1], score_dic[key])
+    writer.writerow((pair_dic[key][0], pair_dic[key][1], score_dic[key]))
 
 result_f.close()
