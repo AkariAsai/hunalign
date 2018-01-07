@@ -13,7 +13,7 @@ writer = csv.writer(result_f, quoting=csv.QUOTE_NONNUMERIC)
 
 for i in tqdm(range(start_idx, start_idx+10000)):
     ja_filename = '/home/dl-exp/wiki_process/corpora_each/ja/ja_' + str(i) + '.txt'
-    en_filename = '/home/dl-exp/wiki_process/corpora_each/en/en_' + str(i) + '.txt'
+    en_filename = '/home/dl-exp/wiki_process/corpora_each/en/en_' + str(i) + '_removed.txt'
     dic_filename = '/home/dl-exp/hunalign_akari/hunalign/data/en-ja-endict.txt'
 
     sys_call = 'src/hunalign/hunalign ' + dic_filename + ' ' + ja_filename + ' ' + \
