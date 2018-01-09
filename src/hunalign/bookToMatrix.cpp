@@ -181,7 +181,7 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTransl
   {
     // specializedIntersectionSize() puts too much score for the neumerical match,
     // so make it less important.
-    score = 0.8 * specializedIntersectionSize( hu, en );
+    score = 0.9 * specializedIntersectionSize( hu, en );
 
     // Check if the target sentence include the translated words from the source.
     if (useTranslation==true){
