@@ -195,7 +195,7 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTransl
           if (huWord==enWord && (huWord!="in") && (huWord!="of") && (huWord!="and") )
           {
             // Put more importance for the translation words match.
-            score+= 1.5;
+            score+= 1.2;
             // ++score;
           }
         }
