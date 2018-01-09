@@ -6,8 +6,8 @@ import csv
 argvs = sys.argv
 start_idx = int(argvs[1])
 
-tmp_output_filename = 'align_tmp_' + str(start_idx) + '.txt'
-result_filename = 'align_result_' + str(start_idx) + '.txt'
+tmp_output_filename = 'align_tmp_weight_changed_' + str(start_idx) + '.txt'
+result_filename = 'align_result_weight_changed_' + str(start_idx) + '.txt'
 result_f = open(result_filename, 'w')
 writer = csv.writer(result_f, quoting=csv.QUOTE_NONNUMERIC)
 
