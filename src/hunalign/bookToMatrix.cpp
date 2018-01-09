@@ -179,7 +179,9 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTransl
   double score = 0;
   if ( ! exceptionalScoring( hu, en, score ) )
   {
-    score = specializedIntersectionSize( hu, en );
+    // specializedIntersectionSize() puts too much score for the neumerical match,
+    // so make it less important.
+    score = 0.8 * specializedIntersectionSize( hu, en );
 
     // Check if the target sentence include the translated words from the source.
     if (useTranslation==true){
@@ -192,10 +194,9 @@ double scoreByIdentity( const Phrase& hu, const Phrase& en, const bool useTransl
           // TODO: Use better hueristics to adopt the score better.
           if (huWord==enWord && (huWord!="in") && (huWord!="of") && (huWord!="and") )
           {
-            // // TODO: REMOVE THIS.
-            // std::cerr << "huwords : " <<  huWord << std::endl;
-            // std::cerr << "enwords : " <<  enWord << std::endl;
-            ++score;
+            // Put more importance for the translation words match.
+            score+= 1.5;
+            // ++score;
           }
         }
       }
