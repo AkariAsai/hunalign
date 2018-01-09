@@ -3,9 +3,9 @@ import csv
 from tqdm import tqdm
 from operator import itemgetter
 
-result_files = ["align_result_0.txt", "align_result_100000.txt", \
-                "align_result_200000.txt","align_result_300000.txt",\
-                "align_result_400000.txt"]
+result_files = ["align_result__weight_changed_0.txt", "align_result__weight_changed_100000.txt", \
+                "align_result__weight_changed_200000.txt","align_result__weight_changed_300000.txt",\
+                "align_result__weight_changed_400000.txt"]
 
 score_dic = {}
 pair_dic = {}
