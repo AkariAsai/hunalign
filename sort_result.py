@@ -23,7 +23,7 @@ for result_file in result_files:
 
 print("The total number of aligned sentences : " + str(index))
 
-result_f = open("sorted_alignment_result.csv", 'w')
+result_f = open("sorted_alignment_result_weight_changed.csv", 'w')
 writer = csv.writer(result_f, quoting=csv.QUOTE_NONNUMERIC)
 
 for key, value in sorted(score_dic.items(), key=itemgetter(1), reverse = True):
