@@ -16,9 +16,10 @@ for result_file in result_files:
     with open(result_file, 'r') as f:
         reader = csv.reader(f)
         for row in reader:
-            score_dic[index] = row[3]
-            pair_dic[index] = (row[1], row[2])
-            index+=1
+            if not len(row[1].split(' '))/len(row[2].split(' ')) > 2.0:
+                score_dic[index] = row[3]
+                pair_dic[index] = (row[1], row[2])
+                index+=1
         f.close()
 
 print("The total number of aligned sentences : " + str(index))
