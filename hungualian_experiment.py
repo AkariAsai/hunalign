@@ -11,7 +11,7 @@ result_filename = 'align_result_weight_changed_' + str(start_idx) + '.txt'
 result_f = open(result_filename, 'w')
 writer = csv.writer(result_f, quoting=csv.QUOTE_NONNUMERIC)
 
-for i in tqdm(range(start_idx, start_idx+10000)):
+for i in tqdm(range(start_idx, start_idx+100000)):
     ja_filename = '/home/dl-exp/wiki_process/corpora_each/ja/ja_' + str(i) + '.txt'
     en_filename = '/home/dl-exp/wiki_process/corpora_each/en/en_' + str(i) + '.txt'
     dic_filename = '/home/dl-exp/hunalign_akari/hunalign/data/en-ja-endict.txt'
