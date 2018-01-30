@@ -54,9 +54,10 @@ for result_file in result_files:
                 # get scores for each categories
                 categories = get_categories_by_title(title)
                 print(title, row[0], categories)
-                for category in categories:
-                    category_scores.setdefault(category, [])
-                    category_scores.append(float(row[3]))
+                if categories is not None:
+                    for category in categories:
+                        category_scores.setdefault(category, [])
+                        category_scores.append(float(row[3]))
 
                 # Store enja_pair, score, title to dictionaries.
                 score_dic[article_id] = row[3]
