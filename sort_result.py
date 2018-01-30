@@ -41,6 +41,7 @@ pair_dic = {}
 title_dic = {}
 category_scores = {}
 
+count = 0
 for result_file in result_files:
     with open(result_file, 'r') as f:
         reader = csv.reader(f)
@@ -62,12 +63,13 @@ for result_file in result_files:
                 score_dic[article_id] = row[3]
                 pair_dic[article_id] = (row[1], row[2])
                 title_dic[article_id] = title
+                count += 1
         f.close()
 
 with open('category_score.json', 'w') as fp:
     json.dump(category_scores, fp)
 
-print("The total number of aligned sentences : " + str(index))
+print("The total number of aligned sentences : " + str(count))
 
 result_f = open("sorted_alignment_title_info.csv", 'w')
 result_ja_f = open("wiki_alignment_ja.txt", 'w')
