@@ -25,7 +25,7 @@ def get_title_article_id_by_corpas_id(corpas_id):
 
 
 def get_article_id_by_corpas_id(corpas_id):
-    return corpas_info[str(corpas_id)]["article_id"]
+    return corpas_info[str(corpas_id)]['article_index']
 
 
 def get_title_by_corpas_id(corpas_id):
