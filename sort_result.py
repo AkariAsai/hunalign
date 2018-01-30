@@ -78,7 +78,7 @@ result_en_f = open("wiki_alignment_en.txt", 'w')
 writer = csv.writer(result_f, quoting=csv.QUOTE_NONNUMERIC)
 
 for key, value in sorted(score_dic.items(), key=itemgetter(1), reverse=True):
-    writer.writerow((title[key], pair_dic[key][0],
+    writer.writerow((title_dic[key], pair_dic[key][0],
                      pair_dic[key][1], score_dic[key]))
     result_ja_f.write(pair_dic[key][0] + '\n')
     result_en_f.write(pair_dic[key][1] + '\n')
