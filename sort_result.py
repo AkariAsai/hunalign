@@ -62,7 +62,7 @@ for result_file in result_files:
                 # Store enja_pair, score, title to dictionaries.
                 score_dic[article_id] = row[3]
                 pair_dic[article_id] = (row[1], row[2])
-                title_dic[article_id]
+                title_dic[article_id] = title
 
                 # TODO: remove this after debugging.
                 print(title_dic)
