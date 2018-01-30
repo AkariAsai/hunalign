@@ -2,6 +2,8 @@ import sys
 import csv
 from tqdm import tqdm
 from operator import itemgetter
+import json
+import csv
 
 title2cat_filepath = "/home/dl-exp/wiki_process/category/result/title2category.json"
 title2cat = json.load(open(title2cat_filepath, "r"))
