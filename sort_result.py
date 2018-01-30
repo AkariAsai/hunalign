@@ -25,11 +25,11 @@ def get_title_article_id_by_corpas_id(corpas_id):
 
 
 def get_article_id_by_corpas_id(corpas_id):
-    return corpas_info[corpas_id]["article_id"]
+    return corpas_info[str(corpas_id)]["article_id"]
 
 
 def get_title_by_corpas_id(corpas_id):
-    return corpas_info[corpas_id]["title"]
+    return corpas_info[str(corpas_id)]["title"]
 
 
 result_files = ["align_result_weight_changed_0.txt", "align_result_weight_changed_100000.txt",
