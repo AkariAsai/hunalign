@@ -54,7 +54,7 @@ for result_file in result_files:
                 # get scores for each categories
                 categories = get_categories_by_title(title)
                 print(title, row[0], categories)
-                for category in category:
+                for category in categories:
                     category_scores.setdefault(category, [])
                     category_scores.append(float(row[3]))
 
