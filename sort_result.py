@@ -20,8 +20,8 @@ def get_categories_by_title(title):
 
 
 def get_title_article_id_by_corpas_id(corpas_id):
-    return get_title_by_corpas_id[corpas_id], \
-        get_article_id_by_corpas_id[corpas_id]
+    return get_title_by_corpas_id(corpas_id), \
+        get_article_id_by_corpas_id(corpas_id)
 
 
 def get_article_id_by_corpas_id(corpas_id):
