@@ -210,9 +210,10 @@ double scoreByIdentity(const Phrase &hu, const Phrase &en,
 
     // TODO: Sophisticate the cognate matching algorithm if it seems to perform
     // well.
-    score += CognateMatchingScore(hu, en);
+    // score += CognateMatchingScore(hu, en);
 
-    std::cerr << "Use cognate score :  " << score << std::endl;
+    // std::cerr << "Use cognate score :  " << score << std::endl;
+
     // End of the translattion checking.
     score /= ((hu.size() < en.size() ? hu.size() : en.size()) + 1);
     score *= maximumScore;
