@@ -182,11 +182,15 @@ double CognateMatchingScore(const Phrase &hu, const Phrase &en) {
 
 double scoreByIdentity(const Phrase &hu, const Phrase &en,
                        const bool useTranslation) {
+
+  std::cerr << "Japanese : " << hu << ", English :  " << en << std::endl;
+
   double score = 0;
   if (!exceptionalScoring(hu, en, score)) {
     // specializedIntersectionSize() puts too much score for the neumerical
     // match, so make it less important.
     score = 0.9 * specializedIntersectionSize(hu, en);
+    std::cerr << "specializedIntersectionSize score :  " << score << std::endl;
 
     // Check if the target sentence include the translated words from the
     // source.
@@ -205,9 +209,13 @@ double scoreByIdentity(const Phrase &hu, const Phrase &en,
         }
       }
     }
+    std::cerr << "Use translation score :  " << score << std::endl;
+
     // TODO: Sophisticate the cognate matching algorithm if it seems to perform
     // well.
     score += CognateMatchingScore(hu, en);
+
+    std::cerr << "Use cognate score :  " << score << std::endl;
     // End of the translattion checking.
     score /= ((hu.size() < en.size() ? hu.size() : en.size()) + 1);
     score *= maximumScore;
