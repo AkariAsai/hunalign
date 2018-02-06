@@ -182,9 +182,6 @@ double CognateMatchingScore(const Phrase &hu, const Phrase &en) {
 
 double scoreByIdentity(const Phrase &hu, const Phrase &en,
                        const bool useTranslation) {
-
-  std::cerr << "Japanese : " << hu << ", English :  " << en << std::endl;
-
   double score = 0;
   if (!exceptionalScoring(hu, en, score)) {
     // specializedIntersectionSize() puts too much score for the neumerical
