@@ -21,7 +21,7 @@ def create_randomly_sampled_en(en_filepath):
     en_f.close()
     en_f_sampled.close()
 
-    return en_f_sampled
+    return en_f_sampled_filepath
 
 
 kyoto_wiki_ja_filepath = "/home/dl-exp/data/kyoto_wiki/kyoto_wiki_HST_100.ja"
