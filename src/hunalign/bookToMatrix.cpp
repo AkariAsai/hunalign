@@ -182,6 +182,21 @@ double CognateMatchingScore(const Phrase &hu, const Phrase &en) {
 
 double scoreByIdentity(const Phrase &hu, const Phrase &en,
                        const bool useTranslation) {
+
+  // TODO : remove these statements after alignment experiment.
+  std::cerr << "Source phrase " << std::endl;
+  for (int huPos = 0; huPos < hu.size(); ++huPos) {
+    const Word &huWord = hu[huPos];
+    std::cerr << huWord << " " << std::endl;
+  }
+  std::cerr << std::endl;
+  std::cerr << "Target phrase " << std::endl;
+  for (int enPos = 0; enPos < en.size(); ++enPos) {
+    const Word &enWord = en[enPos];
+    std::cerr << enWord << " " << std::endl;
+  }
+  std::cerr << std::endl;
+
   double score = 0;
   if (!exceptionalScoring(hu, en, score)) {
     // specializedIntersectionSize() puts too much score for the neumerical
@@ -197,6 +212,10 @@ double scoreByIdentity(const Phrase &hu, const Phrase &en,
         for (int enPos = 0; enPos < en.size(); ++enPos) {
           const Word &enWord = en[enPos];
           // TODO: Use better hueristics to adopt the score better.
+          if (huWord == enWord) {
+            std::cerr << "Ja word : " << huWord << ", En word : " << enWord
+                      << std::endl;
+          }
           if (huWord == enWord && (huWord != "in") && (huWord != "of") &&
               (huWord != "and")) {
             // Put more importance for the translation words match.
@@ -220,7 +239,7 @@ double scoreByIdentity(const Phrase &hu, const Phrase &en,
   }
 
   return score;
-}
+} // namespace Hunglish
 
 void sentenceListsToAlignMatrixIdentity(const SentenceList &huSentenceList,
                                         const SentenceList &enSentenceList,
