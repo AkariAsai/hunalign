@@ -6,7 +6,7 @@ import csv
 argvs = sys.argv
 start_idx = int(argvs[1])
 
-tmp_output_filename = '20180212/align_' + str(start_idx) + '.txt'
+tmp_output_filename = '20180212/align_tmp_' + str(start_idx) + '.txt'
 result_filename = '20180212/align_' + str(start_idx) + '.txt'
 result_f = open(result_filename, 'w')
 writer = csv.writer(result_f, quoting=csv.QUOTE_NONNUMERIC)
@@ -33,8 +33,6 @@ for i in tqdm(range(start_idx, start_idx + 100000)):
         if len(result) >= 2 and len(result[0]) > 0 and float(result[2]) > -0.3:
             writer.writerow(
                 (i, result[0], result[1], float(result[2])))
-            result_f.write(str(i) + '\t' +
-                           result[0] + '\t' + result[1] + '\t' + result[2])
         line = f.readline()
     f.close()
 
