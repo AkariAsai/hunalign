@@ -22,7 +22,6 @@ for i in tqdm(range(start_idx, start_idx + 100000)):
         en_filename + ' -hand=examples/demo.manual.ladder -text >' + tmp_output_filename
 
     subprocess.call(sys_call, shell=True)
-    exit()
 
     f = open(tmp_output_filename, encoding='utf-8', errors='ignore')
     line = f.readline()
