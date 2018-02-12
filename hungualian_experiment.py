@@ -23,19 +23,19 @@ for i in tqdm(range(start_idx, start_idx + 100000)):
 
     subprocess.call(sys_call, shell=True)
 
-    f = open(tmp_output_filename)
-    line = f.readline()
+    f = open(tmp_output_filename, encoding='utf-8', errors='ignore'))
+    line=f.readline()
 
     # Add the result if the ja sentences could find the corresponding en
     # sentence.
     while line:
-        result = line.split('\t')
-        if len(result[0]) > 0 and float(result[2]) > -0.3:
+        result=line.split('\t')
+        if len(result) >= 2 and len(result[0]) > 0 and float(result[2]) > -0.3:
             writer.writerow(
                 (i, result[0], result[1], float(result[2])))
             result_f.write(str(i) + '\t' +
                            result[0] + '\t' + result[1] + '\t' + result[2])
-        line = f.readline()
+        line=f.readline()
     f.close()
 
 result_f.close()
