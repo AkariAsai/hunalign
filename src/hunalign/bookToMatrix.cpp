@@ -187,13 +187,13 @@ double scoreByIdentity(const Phrase &hu, const Phrase &en,
   std::cerr << "Source phrase " << std::endl;
   for (int huPos = 0; huPos < hu.size(); ++huPos) {
     const Word &huWord = hu[huPos];
-    std::cerr << huWord << " " << std::endl;
+    std::cerr << huWord << " ";
   }
   std::cerr << std::endl;
   std::cerr << "Target phrase " << std::endl;
   for (int enPos = 0; enPos < en.size(); ++enPos) {
     const Word &enWord = en[enPos];
-    std::cerr << enWord << " " << std::endl;
+    std::cerr << enWord << " ";
   }
   std::cerr << std::endl;
 
