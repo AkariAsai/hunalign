@@ -214,17 +214,17 @@ double scoreByIdentity(const Phrase &hu, const Phrase &en,
           if (huWord == enWord) {
             std::cerr << "Ja word : " << huWord << ", En word : " << enWord
                       << std::endl;
-            score += 1.2;
+            // score += 1.2;
           }
           // TODO: Use better hueristics to adopt the score better.
           // Currrently, some words which tend to appear pseudo translation too
           // much are not add socres.
-          // if (huWord == enWord && (huWord != "in") && (huWord != "of") &&
-          //     (huWord != "and") && (huWord != "an") && (huWord != "the") &&
-          //     (huWord != "to") && (huWord != "is")) {
-          //   // Put more importance for the translation words match.
-          //   score += 1.2;
-          // }
+          if (huWord == enWord && (huWord != "in") && (huWord != "of") &&
+              (huWord != "and") && (huWord != "an") && (huWord != "the") &&
+              (huWord != "to") && (huWord != "is")) {
+            // Put more importance for the translation words match.
+            score += 1.2;
+          }
         }
       }
     }
