@@ -92,7 +92,6 @@ for result_file in result_files:
                 score_dic[article_id] = row[3]
                 pair_dic[article_id] = (row[1], row[2])
                 title_dic[article_id] = title
-                count += 1
         f.close()
     index += 1
 
