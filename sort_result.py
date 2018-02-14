@@ -71,14 +71,13 @@ score_dic = {}
 pair_dic = {}
 article_title = {}
 
+index = 0
 for result_file in result_files:
     with open(result_file, 'r') as f:
         reader = csv.reader(f)
         for row in reader:
             if not len(row[1].split(' ')) / len(row[2].split(' ')) > 2.0:
-                corpas_id = \
-                    int(row[0]) - int(result_file.lstrip(
-                        "20180212/align_").rstrip(".txt"))
+                corpas_id = int(row[0]) - (100000 * index)
                 title, article_id = \
                     get_title_article_id_by_corpas_id(corpas_id)
 
@@ -95,6 +94,8 @@ for result_file in result_files:
                 title_dic[article_id] = title
                 count += 1
         f.close()
+    index += 1
+
 
 with open('20180212/category_score.json', 'w') as fp:
     json.dump(category_scores, fp)
