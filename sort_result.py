@@ -69,7 +69,7 @@ result_files = ["20180212/align_0.txt", "20180212/align_100000.txt",
 
 score_dic = {}
 pair_dic = {}
-article_title = {}
+title_dic = {}
 
 index = 0
 for result_file in result_files:
@@ -109,7 +109,7 @@ result_en_f = open("20180212/wiki_alignment_en.txt", 'w')
 writer = csv.writer(result_f, quoting=csv.QUOTE_NONNUMERIC)
 
 for key, value in sorted(score_dic.items(), key=itemgetter(1), reverse=True):
-    title = article_title[key]
+    title = title_dic[key]
     writer.writerow(
         (title, pair_dic[key][0], pair_dic[key][1], score_dic[key]))
     result_ja_f.write(pair_dic[key][0] + '\n')
