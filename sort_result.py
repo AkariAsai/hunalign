@@ -73,11 +73,13 @@ title_dic = {}
 category_scores = {}
 
 index = 0
+count = 0
 for result_file in result_files:
     with open(result_file, 'r') as f:
         reader = csv.reader(f)
         for row in reader:
             if not len(row[1].split(' ')) / len(row[2].split(' ')) > 2.0:
+                count += 1
                 corpas_id = int(row[0]) - (100000 * index)
                 title, article_id = \
                     get_title_article_id_by_corpas_id(corpas_id)
