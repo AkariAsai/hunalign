@@ -63,9 +63,9 @@ def create_category_score_dic(score_dic, article_title):
         categories = get_categories_title_by_article_title(article_title[k])
 
 
-result_files = ["align_result_weight_changed_0.txt", "align_result_weight_changed_100000.txt",
-                "align_result_weight_changed_200000.txt", "align_result_weight_changed_300000.txt",
-                "align_result_weight_changed_400000.txt"]
+result_files = ["20180212/align_0.txt", "20180212/align_100000.txt",
+                "20180212/align_200000.txt", "20180212/align_300000.txt",
+                "20180212/align_400000.txt"]
 
 score_dic = {}
 pair_dic = {}
@@ -77,7 +77,8 @@ for result_file in result_files:
         for row in reader:
             if not len(row[1].split(' ')) / len(row[2].split(' ')) > 2.0:
                 corpas_id = \
-                    int(row[0]) - int(result_file.lstrip("align_result_weight_changed_").rstrip(".txt"))
+                    int(row[0]) - int(result_file.lstrip(
+                        "20180212/align_").rstrip(".txt"))
                 title, article_id = \
                     get_title_article_id_by_corpas_id(corpas_id)
 
@@ -95,14 +96,14 @@ for result_file in result_files:
                 count += 1
         f.close()
 
-with open('category_score.json', 'w') as fp:
+with open('20180212/category_score.json', 'w') as fp:
     json.dump(category_scores, fp)
 
 print("The total number of aligned sentences : " + str(count))
 
-result_f = open("sorted_alignment_title_info.csv", 'w')
-result_ja_f = open("wiki_alignment_ja.txt", 'w')
-result_en_f = open("wiki_alignment_en.txt", 'w')
+result_f = open("20180212/sorted_alignment_title_info.csv", 'w')
+result_ja_f = open("20180212/wiki_alignment_ja.txt", 'w')
+result_en_f = open("20180212/wiki_alignment_en.txt", 'w')
 
 writer = csv.writer(result_f, quoting=csv.QUOTE_NONNUMERIC)
 
