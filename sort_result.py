@@ -70,6 +70,7 @@ result_files = ["20180212/align_0.txt", "20180212/align_100000.txt",
 score_dic = {}
 pair_dic = {}
 title_dic = {}
+category_scores = {}
 
 index = 0
 for result_file in result_files:
