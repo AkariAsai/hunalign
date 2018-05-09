@@ -169,7 +169,7 @@ double CognateMatchingScore(const Phrase &hu, const Phrase &en) {
         const Word &enWord = en[enPos];
         // TODO: Use better hueristics to adopt the score better.
         if (isCognateMatching(huWord, enWord)) {
-          score += 1.2;
+          score += 1.0;
         }
       }
     }
@@ -184,26 +184,24 @@ double scoreByIdentity(const Phrase &hu, const Phrase &en,
                        const bool useTranslation) {
 
   // // TODO : remove these statements after alignment experiment.
-  // std::cerr << "Source phrase " << std::endl;
-  // for (int huPos = 0; huPos < hu.size(); ++huPos) {
-  //   const Word &huWord = hu[huPos];
-  //   std::cerr << huWord << " ";
-  // }
-  // std::cerr << std::endl;
-  // std::cerr << "Target phrase " << std::endl;
-  // for (int enPos = 0; enPos < en.size(); ++enPos) {
-  //   const Word &enWord = en[enPos];
-  //   std::cerr << enWord << " ";
-  // }
-  // std::cerr << std::endl;
+  std::cerr << "Source phrase " << std::endl;
+  for (int huPos = 0; huPos < hu.size(); ++huPos) {
+    const Word &huWord = hu[huPos];
+    std::cerr << huWord << " ";
+  }
+  std::cerr << std::endl;
+  std::cerr << "Target phrase " << std::endl;
+  for (int enPos = 0; enPos < en.size(); ++enPos) {
+    const Word &enWord = en[enPos];
+    std::cerr << enWord << " ";
+  }
+  std::cerr << std::endl;
 
   double score = 0;
   if (!exceptionalScoring(hu, en, score)) {
     // specializedIntersectionSize() puts too much score for the neumerical
     // match, so make it less important.
-    score = 0.9 * specializedIntersectionSize(hu, en);
-    // std::cerr << "specializedIntersectionSize score :  " << score <<
-    // std::endl;
+    score = specializedIntersectionSize(hu, en);
 
     // Check if the target sentence include the translated words from the
     // source.
@@ -212,11 +210,11 @@ double scoreByIdentity(const Phrase &hu, const Phrase &en,
         const Word &huWord = hu[huPos];
         for (int enPos = 0; enPos < en.size(); ++enPos) {
           const Word &enWord = en[enPos];
-          // if (huWord == enWord) {
-          //   std::cerr << "Ja word : " << huWord << ", En word : " << enWord
-          //             << std::endl;
-          //   // score += 1.2;
-          // }
+          if (huWord == enWord) {
+            std::cerr << "Fr word : " << huWord << ", En word : " << enWord
+                      << std::endl;
+            // score += 1.2;
+          }
           // TODO: Use better hueristics to adopt the score better.
           // Currrently, some words which tend to appear pseudo translation too
           // much are not add socres.
