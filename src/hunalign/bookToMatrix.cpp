@@ -218,8 +218,8 @@ double scoreByIdentity(const Phrase &hu, const Phrase &en,
           // TODO: Use better hueristics to adopt the score better.
           // Currrently, some words which tend to appear pseudo translation too
           // much are not add socres.
-          if (huWord == enWord && (huWord != "in") && (huWord != "of") &&
-              (huWord != "and")) {
+          if (huWord == enWord && (huWord != "a") && (huWord != ".") &&
+              (huWord != ",")) {
             // Put more importance for the translation words match.
             score += 1.2;
           }
