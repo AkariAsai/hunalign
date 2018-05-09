@@ -210,16 +210,14 @@ double scoreByIdentity(const Phrase &hu, const Phrase &en,
         const Word &huWord = hu[huPos];
         for (int enPos = 0; enPos < en.size(); ++enPos) {
           const Word &enWord = en[enPos];
-          if (huWord == enWord) {
-            std::cerr << "Fr word : " << huWord << ", En word : " << enWord
-                      << std::endl;
-            // score += 1.2;
-          }
           // TODO: Use better hueristics to adopt the score better.
           // Currrently, some words which tend to appear pseudo translation too
           // much are not add socres.
           if (huWord == enWord && (huWord != "a") && (huWord != ".") &&
               (huWord != ",")) {
+            std::cerr << "Fr word : " << huWord << ", En word : " << enWord
+                      << std::endl;
+            // score += 1.2;
             // Put more importance for the translation words match.
             score += 1.2;
           }
